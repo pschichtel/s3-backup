@@ -73,7 +73,7 @@ fi
 backup_args=()
 if [ -n "${RESTIC_BACKUP_TAG:-}" ]
 then
-    backup_args=("--tag" "$RESTIC_BACKUP_TAG")
+    backup_args+=("--tag" "$RESTIC_BACKUP_TAG")
 fi
 
 # Load the secret env vars from files for AWS/S3 for restic
