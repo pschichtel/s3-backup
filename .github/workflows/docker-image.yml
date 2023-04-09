@@ -18,10 +18,8 @@ jobs:
         password: ${{ secrets.GITHUB_TOKEN }}
     - name: Build the Docker image
       run: |
-        repo="ghcr.io/pschichtel/s3-backup"
-        image_name="$repo:${GITHUB_REF#refs/heads/}"
-        cache_repo="$repo/cache"
+        image_name="ghcr.io/pschichtel/s3-backup:${GITHUB_REF#refs/heads/}"
         s3fs_version="1.91"
         restic_version="0.15.1"
-        podman build --build-arg S3FS_VERSION="$s3fs_version" --build-arg RESTIC_VERSION="$restic_version" -t "$image_name" --layers --cache-from="$cache_repo" --cache-to="$cache_repo" .
+        podman build --build-arg S3FS_VERSION="$s3fs_version" --build-arg RESTIC_VERSION="$restic_version" -t "$image_name" .
         podman push "$image_name"
