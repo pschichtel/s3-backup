@@ -22,4 +22,4 @@ jobs:
         s3fs_version="1.91"
         restic_version="0.15.1"
         podman build --build-arg S3FS_VERSION="$s3fs_version" --build-arg RESTIC_VERSION="$restic_version" -t "$image_name" .
-        docker push "$image_name"
+        podman push "$image_name"
