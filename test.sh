@@ -8,7 +8,7 @@ podman build --build-arg S3FS_VERSION="1.91" --build-arg RESTIC_VERSION="0.15.2"
 
 source test_variables.sh
 
-podman run --rm -t --privileged \
+podman run --rm -t --device /dev/fuse --cap-add SYS_ADMIN \
     -e SOURCE_S3_ENDPOINT="$source_endpoint" \
     -e SOURCE_S3_ACCESS_KEY="$source_access_key" \
     -e SOURCE_S3_SECRET_KEY="$source_secret_key" \

@@ -34,6 +34,6 @@ Since the container uses a fuse filesystem, it must either be executed with `--p
 ### Example
 
 ```bash
-podman run --rm -it --device /dev/fuse --cap-add SYS_ADMIN -e S3FS_ENDPOINT=some-bucket -e S3FS_ACCESS_KEY=some-access-key -e S3FS_SECRET_KEY=some-secret-key ghcr.io/pschichtel/s3-backup:main
+podman run --rm -it --device /dev/fuse --cap-add SYS_ADMIN -e SOURCE_BUCKETS=some-bucket -e SOURCE_S3_ACCESS_KEY=some-access-key -e SOURCE_S3_SECRET_KEY=some-secret-key ghcr.io/pschichtel/s3-backup:main
 ```
 
