@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
 set -euo pipefail
+set -x
 
 s3fs_mountpoint_base='/mnt'
 read -r -a source_buckets <<< "${SOURCE_BUCKETS?no source buckets were configured!}"
@@ -111,7 +112,13 @@ then
     AWS_SESSION_TOKEN="$(< "$AWS_SESSION_TOKEN_FILE")"
 fi
 
-restic "${restic_args[@]}" backup --one-file-system "${backup_args[@]}" ${RESTIC_BACKUP_EXTRA_ARGS:-} "$s3fs_mountpoint_base"
+if [ "${RESTIC_INIT_REPOSITORY:-}" = "true" ]
+then
+    restic "${restic_args[@]}" init || echo "Repository initialization failed, is it already initialized?"
+fi
+
+
+restic "${restic_args[@]}" backup --one-file-system "${backup_args[@]}" ${RESTIC_BACKUP_EXTRA_ARGS:-} "${s3fs_mountpoints[@]}"
 
 for s3fs_mountpoint in "${s3fs_mountpoints[@]}"
 do
