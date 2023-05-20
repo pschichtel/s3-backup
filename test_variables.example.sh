@@ -1,3 +1,7 @@
+#!/usr/bin/env bash
+
+# This is a template, copy it to test_variables.sh
+
 source_endpoint=""
 source_access_key=""
 source_secret_key=""
