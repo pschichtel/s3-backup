@@ -1,0 +1,10 @@
+source_endpoint=""
+source_access_key=""
+source_secret_key=""
+source_buckets=""
+
+target_endpoint=""
+target_access_key=""
+target_secret_key=""
+target_bucket=""
+restic_repo_password=""
