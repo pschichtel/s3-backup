@@ -113,11 +113,11 @@ fi
 
 if [ "${RESTIC_INIT_REPOSITORY:-}" = "true" ]
 then
-    restic "${restic_args[@]}" init || echo "Repository initialization failed, is it already initialized?"
+    restic "${restic_args[@]}" ${RESTIC_EXTRA_ARGS:-} init || echo "Repository initialization failed, is it already initialized?"
 fi
 
 
-restic "${restic_args[@]}" backup --one-file-system "${backup_args[@]}" ${RESTIC_BACKUP_EXTRA_ARGS:-} "${s3fs_mountpoints[@]}"
+restic "${restic_args[@]}" ${RESTIC_EXTRA_ARGS:-} backup --one-file-system "${backup_args[@]}" ${RESTIC_BACKUP_EXTRA_ARGS:-} "${s3fs_mountpoints[@]}"
 
 for s3fs_mountpoint in "${s3fs_mountpoints[@]}"
 do
