@@ -3,6 +3,9 @@ name: Docker Image CI
 on:
   push:
     branches: [ "main" ]
+  create:
+    tags:
+      - v*
   workflow_dispatch:
 
 jobs:
