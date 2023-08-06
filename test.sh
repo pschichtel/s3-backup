@@ -4,7 +4,7 @@ set -euo pipefail
 
 image_name="ghcr.io/pschichtel/s3-backup:dev"
 
-podman build --build-arg S3FS_VERSION="1.91" --build-arg RESTIC_VERSION="0.15.2" -t "$image_name" .
+podman build --build-arg S3FS_VERSION="1.93" --build-arg RESTIC_VERSION="0.16.0" -t "$image_name" .
 
 source test_variables.sh
 
