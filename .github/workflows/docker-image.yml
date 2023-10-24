@@ -23,6 +23,6 @@ jobs:
       run: |
         image_name="ghcr.io/pschichtel/s3-backup:${GITHUB_REF##*/}"
         s3fs_version="1.93"
-        restic_version="0.16.0"
+        restic_version="0.16.1"
         podman build --build-arg S3FS_VERSION="$s3fs_version" --build-arg RESTIC_VERSION="$restic_version" -t "$image_name" .
         podman push "$image_name"
