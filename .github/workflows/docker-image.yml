@@ -30,7 +30,7 @@ jobs:
         platforms: linux/amd64,linux/arm64
         push: true
         tags: "ghcr.io/pschichtel/s3-backup:${{ github.ref_name }}"
-        build-args:
-          - S3FS_VERSION=1.93
-          - RESTIC_VERSION=0.16.1
+        build-args: |
+          S3FS_VERSION=1.93
+          RESTIC_VERSION=0.16.1
 
