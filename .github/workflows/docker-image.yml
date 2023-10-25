@@ -33,4 +33,5 @@ jobs:
         build-args: |
           S3FS_VERSION=1.93
           RESTIC_VERSION=0.16.1
+        cache-to: type=inline
 
