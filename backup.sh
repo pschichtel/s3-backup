@@ -85,7 +85,7 @@ then
     restic_args+=(--no-cache)
 fi
 
-if [ -z "${RESTIC_RETRY_LOCK_TIMEOUT:-}" ]
+if [ -n "${RESTIC_RETRY_LOCK_TIMEOUT:-}" ]
 then
     restic_args+=(--retry-lock "${RESTIC_RETRY_LOCK_TIMEOUT}")
 fi
