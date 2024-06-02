@@ -96,6 +96,11 @@ then
     backup_args+=("--tag" "$RESTIC_BACKUP_TAG")
 fi
 
+if [ -n "${RESTIC_BACKUP_HOST:-}" ]
+then
+    backup_args+=("--host" "$RESTIC_BACKUP_HOST")
+fi
+
 # Load the secret env vars from files for AWS/S3 for restic
 
 if [ -z "${AWS_ACCESS_KEY_ID:-}" ] && [ -n "${AWS_ACCESS_KEY_ID_FILE:-}" ] && [ -r "$AWS_ACCESS_KEY_ID_FILE" ]
