@@ -32,6 +32,6 @@ jobs:
         tags: "ghcr.io/pschichtel/s3-backup:${{ github.ref_name }}"
         build-args: |
           S3FS_VERSION=1.94
-          RESTIC_VERSION=0.17.0
+          RESTIC_VERSION=0.17.1
         cache-to: type=inline
 
