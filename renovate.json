@@ -7,7 +7,7 @@
         "^Dockerfile$"
       ],
       "matchStrings": [
-        "git\\s+clone\\s+-b\\s+\"v(?<currentValue>[^\\\"]+)\".*?\\s+https://github\\.com/(?<depName>[^/]+/[^/\\s.]+)"
+        "git\\s+clone\\s+-b\\s+\"v(?<currentValue>[^\"]+)\".*?\\s+https://github\\.com/(?<depName>[^/]+/[^/\\s.]+)"
       ],
       "datasourceTemplate": "github-releases"
     }
