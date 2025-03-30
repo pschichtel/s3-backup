@@ -1,4 +1,4 @@
-FROM ghcr.io/restic/restic:0.17.3 AS restic
+FROM ghcr.io/restic/restic:0.18.0 AS restic
 
 FROM docker.io/library/debian:bookworm AS s3fs-build
 
