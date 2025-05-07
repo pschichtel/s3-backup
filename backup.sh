@@ -58,10 +58,16 @@ trap cleanup_s3fs EXIT
 s3fs_mountpoints=()
 for source_bucket in "${source_buckets[@]}"
 do
-    s3fs_mountpoint="${s3fs_mountpoint_base}/${source_bucket}"
+    source_bucket_name="$(cut -d'/' -f1 <<< "$source_bucket")"
+    source_bucket_mountpoint="$(cut -d'/' -f2 <<< "$source_bucket")"
+    if [ -z "$source_bucket_mountpoint" ]
+    then
+        source_bucket_mountpoint="$source_bucket_name"
+    fi
+    s3fs_mountpoint="${s3fs_mountpoint_base}/${source_bucket_mountpoint}"
     mkdir -p "$s3fs_mountpoint"
     mount_test_file="$(mktemp -p "$s3fs_mountpoint")"
-    s3fs -f "$source_bucket" "$s3fs_mountpoint" -o "ro,nonempty,listobjectsv2,instance_name=${source_bucket},passwd_file=${s3fs_credentials_file},use_path_request_style${s3fs_url}" > "/proc/$$/fd/1" 2> "/proc/$$/fd/2" &
+    s3fs -f "$source_bucket_name" "$s3fs_mountpoint" -o "ro,nonempty,listobjectsv2,instance_name=${source_bucket_name},passwd_file=${s3fs_credentials_file},use_path_request_style${s3fs_url}" > "/proc/$$/fd/1" 2> "/proc/$$/fd/2" &
     s3fs_pid="$!"
     s3fs_processes+=("$s3fs_pid")
 
@@ -72,7 +78,7 @@ do
             echo "s3fs exited unexpectedly!"
             exit 1
         fi
-        echo "Waiting for the s3fs mount to appear for bucket ${source_bucket} at ${s3fs_mountpoint}..."
+        echo "Waiting for the s3fs mount to appear for bucket ${source_bucket_name} at ${s3fs_mountpoint}..."
         sleep 1
     done
     s3fs_mountpoints+=("$s3fs_mountpoint")
