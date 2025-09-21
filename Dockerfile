@@ -1,4 +1,4 @@
-FROM ghcr.io/restic/restic:0.18.0 AS restic
+FROM ghcr.io/restic/restic:0.18.1 AS restic
 
 FROM docker.io/library/debian:trixie AS s3fs-build
 
