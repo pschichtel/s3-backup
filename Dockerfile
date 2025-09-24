@@ -12,7 +12,7 @@ RUN mkdir /build-s3fs \
  && ./configure \
  && make
 
-FROM docker.io/library/debian:bookworm-slim
+FROM docker.io/library/debian:trixie-slim
 
 RUN apt-get update
 RUN apt-get install -y libcurl4 libxml2 openssl media-types fuse tzdata ssh-client
