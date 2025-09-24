@@ -15,7 +15,7 @@ RUN mkdir /build-s3fs \
 FROM docker.io/library/debian:trixie-slim
 
 RUN apt-get update
-RUN apt-get install -y libcurl4 libxml2 openssl media-types fuse tzdata ssh-client
+RUN apt-get install -y libcurl4 libxml2 openssl media-types libfuse2 tzdata ssh-client
 
 COPY backup.sh /backup.sh
 
