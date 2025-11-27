@@ -3,7 +3,7 @@ FROM ghcr.io/restic/restic:0.18.1 AS restic
 FROM docker.io/library/debian:trixie AS s3fs-build
 
 RUN apt-get update
-RUN apt-get install -y build-essential git automake pkg-config libfuse-dev libssl-dev libxml2-dev libcurl4-openssl-dev openssl media-types
+RUN apt-get install -y build-essential git automake pkg-config libfuse3-dev libssl-dev libxml2-dev libcurl4-openssl-dev openssl media-types
 
 RUN mkdir /build-s3fs \
  && git clone -b "v1.96" --depth 1 https://github.com/s3fs-fuse/s3fs-fuse /build-s3fs \
@@ -15,7 +15,7 @@ RUN mkdir /build-s3fs \
 FROM docker.io/library/debian:trixie-slim
 
 RUN apt-get update
-RUN apt-get install -y libcurl4 libxml2 openssl media-types libfuse2 tzdata ssh-client
+RUN apt-get install -y libcurl4 libxml2 openssl media-types libfuse3-4 tzdata ssh-client
 
 COPY backup.sh /backup.sh
 
