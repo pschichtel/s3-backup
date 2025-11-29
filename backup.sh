@@ -67,7 +67,7 @@ do
     s3fs_mountpoint="${s3fs_mountpoint_base}/${source_bucket_mountpoint}"
     mkdir -p "$s3fs_mountpoint"
     mount_test_file="$(mktemp -p "$s3fs_mountpoint")"
-    s3fs -f "$source_bucket_name" "$s3fs_mountpoint" -o "ro,nonempty,listobjectsv2,instance_name=${source_bucket_name},passwd_file=${s3fs_credentials_file},use_path_request_style${s3fs_url}" > "/proc/$$/fd/1" 2> "/proc/$$/fd/2" &
+    s3fs -f "$source_bucket_name" "$s3fs_mountpoint" -o "ro,listobjectsv2,instance_name=${source_bucket_name},passwd_file=${s3fs_credentials_file},use_path_request_style${s3fs_url}" > "/proc/$$/fd/1" 2> "/proc/$$/fd/2" &
     s3fs_pid="$!"
     s3fs_processes+=("$s3fs_pid")
 
