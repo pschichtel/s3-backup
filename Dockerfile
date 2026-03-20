@@ -1,6 +1,6 @@
 FROM ghcr.io/restic/restic:0.18.1 AS restic
 
-FROM docker.io/library/debian:trixie AS s3fs-build
+FROM docker.io/library/debian:trixie-20260316 AS s3fs-build
 
 RUN apt-get update
 RUN apt-get install -y build-essential git automake pkg-config libfuse3-dev libssl-dev libxml2-dev libcurl4-openssl-dev openssl media-types
