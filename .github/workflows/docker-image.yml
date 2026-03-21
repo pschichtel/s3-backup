@@ -23,12 +23,21 @@ jobs:
         registry: ghcr.io
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
+    - name: Extract Docker metadata
+      id: meta
+      uses: docker/metadata-action@v6
+      with:
+        images: ghcr.io/pschichtel/s3-backup
+        tags: |
+          type=ref,event=branch
+          type=ref,event=tag
+          type=edge,branch=main
     - name: Build and push
       uses: docker/build-push-action@v7
       with:
         context: .
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: "ghcr.io/pschichtel/s3-backup:${{ replace(github.ref_name, '/', '-')  }}"
+        tags: ${{ steps.meta.outputs.tags }}
         cache-to: type=inline
 
