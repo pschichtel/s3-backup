@@ -29,6 +29,6 @@ jobs:
         context: .
         platforms: linux/amd64,linux/arm64
         push: true
-        tags: "ghcr.io/pschichtel/s3-backup:${{ github.ref_name }}"
+        tags: 'ghcr.io/pschichtel/s3-backup:${{ replace(github.ref_name, "/", "-")  }}'
         cache-to: type=inline
 
