@@ -1,6 +1,6 @@
 FROM ghcr.io/restic/restic:0.18.1@sha256:c1958a2a1c8614f5c317347c2aaddd9f426076f0521430b55509eba43d7516ee AS restic
 
-FROM docker.io/library/debian:trixie-20260505@sha256:0bea168ca3987374732de970508d6dd701d36ee68781b18aadaddca04a95d392 AS s3fs-build
+FROM docker.io/library/debian:trixie-20260505@sha256:e2d08da6f42ef4b09b165d55528a12727aeed8240dc9edf888e3ec07e10ef9da AS s3fs-build
 
 RUN apt-get update
 RUN apt-get install -y build-essential git automake pkg-config libfuse3-dev libssl-dev libxml2-dev libcurl4-openssl-dev openssl media-types
@@ -12,7 +12,7 @@ RUN mkdir /build-s3fs \
  && ./configure \
  && make
 
-FROM docker.io/library/debian:trixie-slim@sha256:bacd8d9d762705be0fdc6f98aa280c6fb29d9e12217aedcf77125397dcee1ab5
+FROM docker.io/library/debian:trixie-slim@sha256:109e2c65005bf160609e4ba6acf7783752f8502ad218e298253428690b9eaa4b
 
 RUN apt-get update
 RUN apt-get install -y libcurl4 libxml2 openssl media-types libfuse3-4 tzdata ssh-client
