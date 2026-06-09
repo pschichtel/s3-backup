@@ -1,4 +1,4 @@
-FROM ghcr.io/restic/restic:0.18.1@sha256:c1958a2a1c8614f5c317347c2aaddd9f426076f0521430b55509eba43d7516ee AS restic
+FROM ghcr.io/restic/restic:0.19.0@sha256:9b0c3c7010d79826a67731ea91a8d1b7eb308d255bdb50a984dbed3e50100deb AS restic
 
 FROM docker.io/library/debian:trixie-20260518@sha256:4ae67669760b807c19f23902a3fd7c121a6a70cf2ae709035674b23e712e4d62 AS s3fs-build
 
